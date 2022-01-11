@@ -1,0 +1,103 @@
+var app = angular.module("mainApp", []);  
+app.controller('CRUDController', function ($scope) {  
+
+    $scope.EmpModel = {  
+        Id: 0,  
+        Salary: 0, 
+        		
+        FirstName: '',  
+        MiddleName: '',
+        LastName: '',
+        Department: '',
+        Email: '',
+        Mobile: '',
+		Address: '',
+		City: '',
+		State: '',
+		Country: '',
+    };  
+
+    $scope.EmpList = [];  
+    $scope.AddData = function () {  
+        var _emp = {  
+            Id: $scope.EmpList.length + 1,
+			 
+            FirstName: $scope.EmpModel.FirstName,  
+            MiddleName: $scope.EmpModel.MiddleName, 
+            LastName: $scope.EmpModel.LastName, 
+            Department: $scope.EmpModel.Department, 
+            Email: $scope.EmpModel.Email, 
+            Mobile: $scope.EmpModel.Mobile,
+			Address: $scope.EmpModel.Address,
+			City: $scope.EmpModel.City,
+			State: $scope.EmpModel.State,
+			Country: $scope.EmpModel.Country,
+			
+            Salary: $scope.EmpModel.Salary  
+        };  
+        $scope.EmpList.push(_emp);  
+        ClearModel();  
+    }  
+
+    $scope.DeleteData = function (emp) {  
+        var _index = $scope.EmpList.indexOf(emp);  
+        $scope.EmpList.splice(_index, 1);  
+    }  
+
+			$scope.BindSelectedData = function (emp) {  
+			$scope.EmpModel.Id = emp.Id; 
+         		
+			$scope.EmpModel.FirstName = emp.FirstName; 
+			$scope.EmpModel.MiddleName = emp.MiddleName; 
+			$scope.EmpModel.LastName = emp.LastName; 
+            $scope.EmpModel.Department = emp.Department; 
+            $scope.EmpModel.Email = emp.Email; 
+            $scope.EmpModel.Mobile = emp.Mobile;
+			$scope.EmpModel.Address = Address; 
+			$scope.EmpModel.City = City; 
+			$scope.EmpModel.State = State; 
+			$scope.EmpModel.Country = Country; 				  
+
+				  
+			$scope.EmpModel.Salary = emp.Salary;  
+    }  
+
+    $scope.UpdateData = function () {  
+        $.grep($scope.EmpList, function (e) {  
+            if (e.Id == $scope.EmpModel.Id) {  
+			
+                e.FirstName = $scope.EmpModel.FirstName;  
+                e.MiddleName = $scope.EmpModel.MiddleName; 
+                e.LastName = $scope.EmpModel.LastName; 
+                e.Department = $scope.EmpModel.Department; 
+                e.Email = $scope.EmpModel.Email; 
+                e.Mobile = $scope.EmpModel.Mobile; 
+				e.Address = $scope.EmpModel.Address;
+				e.City = $scope.EmpModel.City;
+				e.State = $scope.EmpModel.State;
+				e.Country= $scope.EmpModel.Country;
+				
+				
+                e.Salary = $scope.EmpModel.Salary;  
+            }  
+        });  
+        ClearModel();  
+    }  
+
+    function ClearModel() {  
+        $scope.EmpModel.Id = 0;  
+        $scope.EmpModel.FirstName = ''; 
+			
+        $scope.EmpModel.MiddleName = ''; 
+        $scope.EmpModel.LastName = ''; 
+        $scope.EmpModel.Department = ''; 
+        $scope.EmpModel.Email = ''; 
+        $scope.EmpModel.Mobile = ''; 
+		$scope.EmpModel.Address = ''; 
+        $scope.EmpModel.City = 0;  
+		$scope.EmpModel.State = ''; 
+        $scope.EmpModel.Country= 0;  
+		
+        $scope.EmpModel.Salary = 0;  
+    }  
+});  
